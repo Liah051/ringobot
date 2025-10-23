@@ -1,17 +1,19 @@
-# Node.jsのバージョン、変える事。
-FROM node:25
+FROM node:16
 
-# 作業ディレクトリを /app に
+# 作業ディレクトリを作成
 WORKDIR /app
 
-# app フォルダ内の内容をコンテナの /app にコピー
-COPY app/ .
+# package.json と package-lock.json をコピー
+COPY package*.json ./
 
-# 依存関係のインストール
+# 依存関係をインストール
 RUN npm install
 
-# ポートを開ける（Koyeb用）、使用してるポート番号にすること。
-EXPOSE 3000
+# プロジェクト全体をコピー
+COPY . .
 
-# アプリの起動、コマンドを指定しよう。index.jsなら"node", "index.js"
-CMD ["node", "server.js"]
+# 環境変数（Koyeb の PORT が自動で割り当てられる）
+ENV PORT=3000
+
+# アプリを起動
+CMD ["npm", "start"]
