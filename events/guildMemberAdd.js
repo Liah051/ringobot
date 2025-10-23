@@ -1,4 +1,5 @@
 const Canvas = require("canvas");
+const path = require("path");
 const { AttachmentBuilder ,EmbedBuilder} = require("discord.js");
 
 module.exports = {
@@ -23,7 +24,8 @@ module.exports = {
     const memberTextY = 420;
 
     // === 🖼 背景 ===
-    const background = await Canvas.loadImage("https://cdn.glitch.global/95403324-b33f-441a-97d9-d34121c61e75/20250430_1549_image.png?v=1745996044085");
+    const backgroundPath = path.join(__dirname, "pictures", "welcome1.png");
+    const background = await Canvas.loadImage(backgroundPath);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
     // === 🎀 ピンクの縁線（半透明）===
