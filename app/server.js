@@ -78,3 +78,13 @@ client.login(process.env.DISCORD_BOT_TOKEN)
   .catch(error => {
     console.error('Bot login error:', error);
   });
+
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Discord Bot is running!');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Express server listening on port ${PORT}`));
